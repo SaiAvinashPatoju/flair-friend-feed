@@ -1,7 +1,7 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PostsList from "@/components/posts/PostsList";
-import { ArrowTrendingUp } from "lucide-react";
+import { TrendingUp } from "lucide-react";
 
 const HomePage = () => {
   return (
@@ -24,7 +24,7 @@ const HomePage = () => {
             value="trending" 
             className="flex-1 py-3 data-[state=active]:border-b-2 data-[state=active]:border-social-primary rounded-none"
           >
-            <ArrowTrendingUp size={18} className="mr-1" />
+            <TrendingUp size={18} className="mr-1" />
             Trending
           </TabsTrigger>
         </TabsList>
