@@ -1,4 +1,5 @@
 
+import { useNavigate } from "react-router-dom";
 import ChatPreview from "./ChatPreview";
 
 const mockChats = [
@@ -47,10 +48,18 @@ const mockChats = [
 ];
 
 const ChatsList = () => {
+  const navigate = useNavigate();
+  
+  const handleChatClick = (chatId: string) => {
+    navigate(`/chats/${chatId}`);
+  };
+  
   return (
     <div>
       {mockChats.map((chat) => (
-        <ChatPreview key={chat.id} {...chat} />
+        <div key={chat.id} onClick={() => handleChatClick(chat.id)}>
+          <ChatPreview {...chat} />
+        </div>
       ))}
     </div>
   );

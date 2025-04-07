@@ -9,6 +9,7 @@ import HomePage from "@/pages/HomePage";
 import GroupsPage from "@/pages/GroupsPage";
 import CreatePostPage from "@/pages/CreatePostPage";
 import ChatsPage from "@/pages/ChatsPage";
+import ChatView from "@/pages/ChatView";
 import ProfilePage from "@/pages/ProfilePage";
 import SearchPage from "@/pages/SearchPage";
 import NotFound from "./pages/NotFound";
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/groups" element={<GroupsPage />} />
             <Route path="/create" element={<CreatePostPage />} />
             <Route path="/chats" element={<ChatsPage />} />
+            <Route path="/chats/:chatId" element={<ChatView />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/search" element={<SearchPage />} />
           </Route>

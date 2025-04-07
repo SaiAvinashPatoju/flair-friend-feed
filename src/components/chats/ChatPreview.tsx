@@ -20,7 +20,7 @@ const ChatPreview = ({
   isGroup = false 
 }: ChatPreviewProps) => {
   return (
-    <div className="flex items-center p-3 space-x-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer">
+    <div className="flex items-center p-3 space-x-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition-colors duration-200 active:bg-gray-100">
       <Avatar className="h-12 w-12">
         <img src={avatar} alt={name} className="h-full w-full object-cover" />
       </Avatar>

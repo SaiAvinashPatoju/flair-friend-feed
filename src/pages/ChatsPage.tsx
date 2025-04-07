@@ -2,13 +2,23 @@
 import { Search, Plus } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ChatsList from "@/components/chats/ChatsList";
+import { useNavigate } from "react-router-dom";
 
 const ChatsPage = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="mb-16">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl font-bold">Messages</h1>
-        <button className="p-2 rounded-full bg-social-primary text-white">
+        <button 
+          className="p-2 rounded-full bg-social-primary text-white hover:bg-social-primary/90 transition-colors"
+          onClick={() => {
+            // This would open a new chat creation dialog in a real app
+            // For now, we'll navigate to the first chat as an example
+            navigate('/chats/1');
+          }}
+        >
           <Plus size={20} />
         </button>
       </div>
@@ -49,14 +59,26 @@ const ChatsPage = () => {
         </TabsContent>
         
         <TabsContent value="groups" className="mt-0">
-          <div className="flex items-center justify-center h-40">
-            <p className="text-muted-foreground">Your group chats will appear here</p>
+          <div className="flex flex-col items-center justify-center h-40 py-8">
+            <p className="text-muted-foreground mb-3">Your group chats will appear here</p>
+            <button 
+              className="px-4 py-2 rounded-full bg-social-primary text-white text-sm hover:bg-social-primary/90 transition-colors"
+              onClick={() => navigate('/chats/2')}
+            >
+              Join a group chat
+            </button>
           </div>
         </TabsContent>
         
         <TabsContent value="unread" className="mt-0">
-          <div className="flex items-center justify-center h-40">
-            <p className="text-muted-foreground">No unread messages</p>
+          <div className="flex flex-col items-center justify-center h-40 py-8">
+            <p className="text-muted-foreground mb-3">No unread messages</p>
+            <button 
+              className="px-4 py-2 rounded-full bg-social-primary text-white text-sm hover:bg-social-primary/90 transition-colors"
+              onClick={() => navigate('/chats')}
+            >
+              View all messages
+            </button>
           </div>
         </TabsContent>
       </Tabs>

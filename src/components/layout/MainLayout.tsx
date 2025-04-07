@@ -1,10 +1,13 @@
 
 import { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import BottomNavbar from './BottomNavbar';
 
 const MainLayout = () => {
+  const location = useLocation();
+  const isChatView = location.pathname.includes('/chats/');
+  
   useEffect(() => {
     // Prevent body scrolling on mobile when virtual keyboard is visible
     const handleResize = () => {
@@ -19,11 +22,11 @@ const MainLayout = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Header />
-      <main className="flex-1 px-4 pt-20 pb-20 max-w-lg mx-auto w-full animate-fade-in">
+      {!isChatView && <Header />}
+      <main className={`flex-1 ${isChatView ? '' : 'px-4 pt-20 pb-20'} max-w-lg mx-auto w-full animate-fade-in`}>
         <Outlet />
       </main>
-      <BottomNavbar />
+      {!isChatView && <BottomNavbar />}
     </div>
   );
 };
