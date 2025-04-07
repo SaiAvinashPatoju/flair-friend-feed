@@ -20,7 +20,7 @@ const MainLayout = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
-      <main className="flex-1 px-4 pt-20 pb-4 max-w-lg mx-auto w-full">
+      <main className="flex-1 px-4 pt-20 pb-20 max-w-lg mx-auto w-full animate-fade-in">
         <Outlet />
       </main>
       <BottomNavbar />

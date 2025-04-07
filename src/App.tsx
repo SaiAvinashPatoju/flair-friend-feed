@@ -10,6 +10,7 @@ import GroupsPage from "@/pages/GroupsPage";
 import CreatePostPage from "@/pages/CreatePostPage";
 import ChatsPage from "@/pages/ChatsPage";
 import ProfilePage from "@/pages/ProfilePage";
+import SearchPage from "@/pages/SearchPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/create" element={<CreatePostPage />} />
             <Route path="/chats" element={<ChatsPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/search" element={<SearchPage />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -43,10 +43,49 @@ const mockPosts = [
   }
 ];
 
-const PostsList = () => {
+const trendingPosts = [
+  {
+    id: "5",
+    username: "tech_insider",
+    userAvatar: "https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&q=80&w=100&h=100",
+    timeAgo: "8 hours ago",
+    content: "Breaking: The new AI model just released is showing incredible results! 🤖 #AI #technology #future",
+    image: "https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&q=80&w=800",
+    likesCount: 1542,
+    commentsCount: 329
+  },
+  {
+    id: "6",
+    username: "fitness_coach",
+    userAvatar: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=100&h=100",
+    timeAgo: "1 day ago",
+    content: "This 5-minute workout has changed my clients' lives! Try it yourself and see the results 💪 #fitness #health",
+    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=800",
+    likesCount: 2038,
+    commentsCount: 457
+  },
+  {
+    id: "7",
+    username: "foodie_adventures",
+    userAvatar: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&q=80&w=100&h=100",
+    timeAgo: "2 days ago",
+    content: "I discovered this hidden gem restaurant and the food is AMAZING! 😍🍽️ #foodie #restaurant #musttry",
+    image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&q=80&w=800",
+    likesCount: 1832,
+    commentsCount: 283
+  }
+];
+
+interface PostsListProps {
+  trending?: boolean;
+}
+
+const PostsList = ({ trending = false }: PostsListProps) => {
+  const postsToShow = trending ? trendingPosts : mockPosts;
+  
   return (
     <div className="space-y-4">
-      {mockPosts.map((post) => (
+      {postsToShow.map((post) => (
         <Post key={post.id} {...post} />
       ))}
     </div>

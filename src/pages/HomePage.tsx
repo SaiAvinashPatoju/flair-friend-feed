@@ -40,9 +40,7 @@ const HomePage = () => {
         </TabsContent>
         
         <TabsContent value="trending" className="mt-0">
-          <div className="flex items-center justify-center h-40">
-            <p className="text-muted-foreground">Trending content will appear here!</p>
-          </div>
+          <PostsList trending={true} />
         </TabsContent>
       </Tabs>
     </div>

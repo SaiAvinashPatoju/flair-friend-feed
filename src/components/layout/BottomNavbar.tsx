@@ -25,10 +25,15 @@ const BottomNavbar = () => {
             <Link 
               key={index} 
               to={item.path} 
-              className={`bottom-nav-item ${isActive ? 'active' : ''}`}
+              className={`flex flex-col items-center justify-center w-full h-full transition-colors duration-200 ${
+                isActive ? 'text-social-primary' : 'text-gray-500 hover:text-gray-700'
+              }`}
             >
               <Icon size={24} />
               <span className="text-xs mt-1">{item.label}</span>
+              {isActive && (
+                <div className="absolute bottom-0 w-10 h-0.5 bg-social-primary rounded-t-md"></div>
+              )}
             </Link>
           );
         })}
