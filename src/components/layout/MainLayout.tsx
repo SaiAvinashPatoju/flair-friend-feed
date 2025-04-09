@@ -21,7 +21,7 @@ const MainLayout = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-background">
       {!isChatView && <Header />}
       <main className={`flex-1 ${isChatView ? '' : 'px-4 pt-20 pb-20'} max-w-lg mx-auto w-full animate-fade-in`}>
         <Outlet />

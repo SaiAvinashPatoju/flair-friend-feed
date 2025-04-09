@@ -5,32 +5,32 @@
 
 @layer base {
   :root {
-    --background: 250 100% 99%;
-    --foreground: 240 10% 3.9%;
+    --background: 250 25% 5%;
+    --foreground: 240 10% 97%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card: 250 30% 8%;
+    --card-foreground: 240 10% 97%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover: 250 30% 8%;
+    --popover-foreground: 240 10% 97%;
 
     --primary: 262 83% 58%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --secondary: 250 20% 15%;
+    --secondary-foreground: 240 5.9% 90%;
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: 250 20% 15%;
+    --muted-foreground: 240 3.8% 70%;
 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 250 20% 25%;
+    --accent-foreground: 240 5.9% 90%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
+    --border: 250 20% 18%;
+    --input: 250 20% 18%;
     --ring: 262 83% 58%;
 
     --radius: 1rem;
@@ -78,6 +78,10 @@
     animation: slideUp 0.3s ease-out;
   }
   
+  .profile-transition {
+    transition: transform 0.3s ease-out;
+  }
+  
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -91,7 +95,7 @@
 
 @layer components {
   .post-card {
-    @apply bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden animate-slide-up;
+    @apply bg-card rounded-2xl shadow-md border border-border overflow-hidden animate-slide-up;
   }
   
   .bottom-nav-item {
@@ -99,6 +103,14 @@
   }
   
   .bottom-nav-item.active {
-    @apply text-social-primary;
+    @apply text-primary;
+  }
+  
+  .category-tab {
+    @apply px-6 py-2 rounded-full text-sm font-medium transition-all;
+  }
+  
+  .tweet-box {
+    @apply bg-card/80 backdrop-blur-sm rounded-xl p-4 mb-4 border border-border;
   }
 }
