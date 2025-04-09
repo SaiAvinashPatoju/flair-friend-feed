@@ -18,7 +18,7 @@ const TweetBox = () => {
   
   return (
     <div className="tweet-box mb-6">
-      <Carousel className="w-full" defaultIndex={1}>
+      <Carousel className="w-full" opts={{ startIndex: 1 }}>
         <CarouselContent>
           <CarouselItem>
             <div className="p-2">
