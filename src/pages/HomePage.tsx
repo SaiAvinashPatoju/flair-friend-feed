@@ -3,29 +3,79 @@ import { Heart, MessageCircle, Users } from "lucide-react";
 import { useState } from "react";
 import { Avatar } from "@/components/ui/avatar";
 import PostsList from "@/components/posts/PostsList";
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext
+} from "@/components/ui/carousel";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 
 const TweetBox = () => {
   const [tweet, setTweet] = useState('');
   
   return (
-    <div className="tweet-box">
-      <div className="flex items-start space-x-3">
-        <Avatar className="h-10 w-10 bg-accent">
-          <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&q=80&w=100&h=100" alt="Your profile" />
-        </Avatar>
-        <div className="flex-1">
-          <textarea
-            className="w-full bg-transparent border-none focus:outline-none resize-none text-foreground placeholder:text-muted-foreground"
-            placeholder="What's happening?"
-            rows={2}
-            value={tweet}
-            onChange={(e) => setTweet(e.target.value)}
-          />
+    <div className="tweet-box mb-6">
+      <Carousel className="w-full">
+        <CarouselContent>
+          <CarouselItem>
+            <div className="p-2">
+              <h3 className="text-lg font-medium mb-2 text-left">What's happening?</h3>
+              <div className="flex items-start space-x-3">
+                <Avatar className="h-12 w-12 bg-accent">
+                  <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&q=80&w=100&h=100" alt="Your profile" />
+                </Avatar>
+                <div className="flex-1">
+                  <Textarea
+                    className="w-full bg-transparent border-none focus:outline-none resize-none text-foreground placeholder:text-muted-foreground min-h-[100px]"
+                    placeholder="Share your thoughts..."
+                    value={tweet}
+                    onChange={(e) => setTweet(e.target.value)}
+                  />
+                  <div className="flex justify-end mt-2">
+                    <Button className="bg-primary hover:bg-primary/80 text-white">
+                      Tweet
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CarouselItem>
+          <CarouselItem>
+            <div className="p-2">
+              <h3 className="text-lg font-medium mb-2 text-left">See what's trending</h3>
+              <div className="space-y-4 p-2">
+                <div className="flex gap-3 items-center p-2 rounded-lg bg-secondary/30">
+                  <Avatar className="h-10 w-10">
+                    <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&q=80&w=100&h=100" alt="Trending" />
+                  </Avatar>
+                  <div className="text-left">
+                    <p className="text-sm text-muted-foreground">#TrendingNow</p>
+                    <p className="text-foreground">Latest tech news roundup</p>
+                  </div>
+                </div>
+                <div className="flex gap-3 items-center p-2 rounded-lg bg-secondary/30">
+                  <Avatar className="h-10 w-10">
+                    <img src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&q=80&w=100&h=100" alt="Trending" />
+                  </Avatar>
+                  <div className="text-left">
+                    <p className="text-sm text-muted-foreground">#Music</p>
+                    <p className="text-foreground">New album releases this week</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CarouselItem>
+        </CarouselContent>
+        <div className="flex justify-center mt-2">
+          <div className="flex space-x-1">
+            <div className="w-2 h-2 rounded-full bg-primary"></div>
+            <div className="w-2 h-2 rounded-full bg-muted"></div>
+          </div>
         </div>
-        <button className="text-muted-foreground hover:text-primary transition-colors">
-          <Heart size={20} />
-        </button>
-      </div>
+      </Carousel>
     </div>
   );
 };

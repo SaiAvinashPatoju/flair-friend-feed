@@ -111,6 +111,6 @@
   }
   
   .tweet-box {
-    @apply bg-card/80 backdrop-blur-sm rounded-xl p-4 mb-4 border border-border;
+    @apply bg-card/80 backdrop-blur-sm rounded-xl p-4 border border-border shadow-lg;
   }
 }
