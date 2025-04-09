@@ -18,7 +18,7 @@ const TweetBox = () => {
   
   return (
     <div className="tweet-box mb-6">
-      <Carousel className="w-full">
+      <Carousel className="w-full" defaultIndex={1}>
         <CarouselContent>
           <CarouselItem>
             <div className="p-2">
@@ -45,25 +45,27 @@ const TweetBox = () => {
           </CarouselItem>
           <CarouselItem>
             <div className="p-2">
-              <h3 className="text-lg font-medium mb-2 text-left">See what's trending</h3>
+              <h3 className="text-lg font-medium mb-2 text-left">Tweets from people you follow</h3>
               <div className="space-y-4 p-2">
                 <div className="flex gap-3 items-center p-2 rounded-lg bg-secondary/30">
                   <Avatar className="h-10 w-10">
-                    <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&q=80&w=100&h=100" alt="Trending" />
+                    <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&q=80&w=100&h=100" alt="Friend" />
                   </Avatar>
-                  <div className="text-left">
-                    <p className="text-sm text-muted-foreground">#TrendingNow</p>
-                    <p className="text-foreground">Latest tech news roundup</p>
+                  <div className="text-left flex-1">
+                    <p className="text-sm font-semibold">@alex_coder</p>
+                    <p className="text-foreground">Just launched my new site! Check it out and let me know what you think.</p>
                   </div>
+                  <Heart size={18} className="text-muted-foreground hover:text-red-500 cursor-pointer" />
                 </div>
                 <div className="flex gap-3 items-center p-2 rounded-lg bg-secondary/30">
                   <Avatar className="h-10 w-10">
-                    <img src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&q=80&w=100&h=100" alt="Trending" />
+                    <img src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&q=80&w=100&h=100" alt="Friend" />
                   </Avatar>
-                  <div className="text-left">
-                    <p className="text-sm text-muted-foreground">#Music</p>
-                    <p className="text-foreground">New album releases this week</p>
+                  <div className="text-left flex-1">
+                    <p className="text-sm font-semibold">@jenny_designs</p>
+                    <p className="text-foreground">Working on some new UI concepts for a client. Excited to share soon!</p>
                   </div>
+                  <Heart size={18} className="text-muted-foreground hover:text-red-500 cursor-pointer" />
                 </div>
               </div>
             </div>
@@ -71,10 +73,12 @@ const TweetBox = () => {
         </CarouselContent>
         <div className="flex justify-center mt-2">
           <div className="flex space-x-1">
-            <div className="w-2 h-2 rounded-full bg-primary"></div>
             <div className="w-2 h-2 rounded-full bg-muted"></div>
+            <div className="w-2 h-2 rounded-full bg-primary"></div>
           </div>
         </div>
+        <CarouselPrevious className="hidden sm:flex" />
+        <CarouselNext className="hidden sm:flex" />
       </Carousel>
     </div>
   );
