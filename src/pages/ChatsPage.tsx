@@ -1,5 +1,5 @@
 
-import { Search, Plus } from "lucide-react";
+import { Search } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ChatsList from "@/components/chats/ChatsList";
 import { useNavigate } from "react-router-dom";
@@ -11,16 +11,6 @@ const ChatsPage = () => {
     <div className="mb-16">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl font-bold">Messages</h1>
-        <button 
-          className="p-2 rounded-full bg-social-primary text-white hover:bg-social-primary/90 transition-colors"
-          onClick={() => {
-            // This would open a new chat creation dialog in a real app
-            // For now, we'll navigate to the first chat as an example
-            navigate('/chats/1');
-          }}
-        >
-          <Plus size={20} />
-        </button>
       </div>
       
       <div className="relative mb-4">
