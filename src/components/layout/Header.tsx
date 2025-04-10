@@ -1,5 +1,5 @@
 
-import { Search, Settings, User, X, UserPlus, Users } from "lucide-react";
+import { Search, Settings, User, UserPlus, Users } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { 
@@ -28,7 +28,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 w-full bg-background border-b border-border z-50">
       <div className="flex justify-between items-center px-4 h-16">
-        <Link to="/" className="text-xl font-bold text-foreground">APP NAME</Link>
+        <Link to="/" className="text-xl font-bold text-foreground">Threadz</Link>
         
         <div className="flex items-center space-x-4">
           <Link to="/search" className="p-2 rounded-full text-foreground hover:bg-accent/50 transition-colors">
