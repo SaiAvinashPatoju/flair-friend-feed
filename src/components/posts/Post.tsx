@@ -1,5 +1,5 @@
 
-import { Heart, MessageCircle, SendHorizontal } from "lucide-react";
+import { Heart, MessageCircle, SendHorizontal, Robot } from "lucide-react";
 import { useState } from "react";
 import { Avatar } from "@/components/ui/avatar";
 
@@ -42,11 +42,13 @@ const Post = ({
             {userAvatar ? (
               <img src={userAvatar} alt={username} className="h-full w-full object-cover" />
             ) : (
-              <div className="w-full h-full rounded-full bg-muted"></div>
+              <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
+                <Robot size={16} className="text-primary/70" />
+              </div>
             )}
           </Avatar>
           <div className="text-sm">
-            <span className="font-medium">{username}</span>
+            <span className="font-medium">{username || "user name"}</span>
             <span className="text-muted-foreground ml-1 text-xs">{timeAgo}</span>
           </div>
         </div>
@@ -69,6 +71,16 @@ const Post = ({
           <button className="p-1 text-muted-foreground">
             <SendHorizontal size={18} />
           </button>
+        </div>
+        <div className="flex items-center space-x-3 text-xs text-muted-foreground">
+          <div className="flex items-center">
+            <Heart size={14} className="mr-1" />
+            <span>{likesCount}</span>
+          </div>
+          <div className="flex items-center">
+            <MessageCircle size={14} className="mr-1" />
+            <span>{commentsCount}</span>
+          </div>
         </div>
       </div>
     </div>

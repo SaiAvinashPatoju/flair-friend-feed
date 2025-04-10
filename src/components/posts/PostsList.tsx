@@ -1,10 +1,18 @@
 
+import { useState } from "react";
 import Post from "./Post";
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext
+} from "@/components/ui/carousel";
 
 const mockPosts = [
   {
     id: "1",
-    username: "jenny_designs",
+    username: "user name",
     userAvatar: "",
     timeAgo: "2 hours ago",
     content: "Just finished my latest design project! What do you think? 😊 #design #creativity",
@@ -13,7 +21,7 @@ const mockPosts = [
   },
   {
     id: "2",
-    username: "travel_mike",
+    username: "user name",
     userAvatar: "",
     timeAgo: "5 hours ago",
     content: "The view from my hike this morning was absolutely breathtaking! 🏔️ #nature #adventure",
@@ -22,7 +30,7 @@ const mockPosts = [
   },
   {
     id: "3",
-    username: "alex_coder",
+    username: "user name",
     userAvatar: "",
     timeAgo: "Yesterday",
     content: "Just launched my new website! Check it out and let me know what you think. Building with React has been such a great experience.",
@@ -66,13 +74,48 @@ interface PostsListProps {
 }
 
 const PostsList = ({ trending = false }: PostsListProps) => {
-  const postsToShow = trending ? trendingPosts : mockPosts;
+  const [activeTab, setActiveTab] = useState<'following' | 'foryou'>('foryou');
+  
+  const handleTabChange = (tab: 'following' | 'foryou') => {
+    setActiveTab(tab);
+  };
+  
+  const postsToShow = activeTab === 'following' ? mockPosts : trendingPosts;
   
   return (
-    <div className="space-y-1">
-      {postsToShow.map((post) => (
-        <Post key={post.id} {...post} />
-      ))}
+    <div className="space-y-4">
+      <Carousel className="mb-6">
+        <CarouselContent>
+          <CarouselItem className="basis-full">
+            <div 
+              className={`${activeTab === 'foryou' ? 'bg-primary' : 'bg-secondary/40'} text-center py-2 rounded-full`}
+              onClick={() => handleTabChange('foryou')}
+            >
+              <button className={`text-sm font-medium ${activeTab === 'foryou' ? 'text-primary-foreground' : 'text-muted-foreground'}`}>
+                for you
+              </button>
+            </div>
+          </CarouselItem>
+          <CarouselItem className="basis-full">
+            <div 
+              className={`${activeTab === 'following' ? 'bg-primary' : 'bg-secondary/40'} text-center py-2 rounded-full`}
+              onClick={() => handleTabChange('following')}
+            >
+              <button className={`text-sm font-medium ${activeTab === 'following' ? 'text-primary-foreground' : 'text-muted-foreground'}`}>
+                following
+              </button>
+            </div>
+          </CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+      
+      <div className="space-y-1">
+        {postsToShow.map((post) => (
+          <Post key={post.id} {...post} />
+        ))}
+      </div>
     </div>
   );
 };

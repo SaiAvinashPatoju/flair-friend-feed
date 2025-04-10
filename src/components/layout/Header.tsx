@@ -1,5 +1,5 @@
 
-import { Search, Settings, User, UserPlus, Users } from "lucide-react";
+import { Search, Settings, User, UserPlus, Users, Robot } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { 
@@ -61,11 +61,13 @@ const Header = () => {
                 <div className="py-6">
                   <div className="flex items-center gap-4">
                     <Avatar className="h-16 w-16">
-                      <img src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&q=80&w=100&h=100" alt="Profile" />
+                      <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
+                        <Robot size={28} className="text-primary/70" />
+                      </div>
                     </Avatar>
                     <div>
-                      <h3 className="font-medium">Jessica Green</h3>
-                      <p className="text-sm text-muted-foreground">@jessica_green</p>
+                      <h3 className="font-medium">user name</h3>
+                      <p className="text-sm text-muted-foreground">@username</p>
                     </div>
                   </div>
                   
@@ -89,14 +91,16 @@ const Header = () => {
                     <h4 className="text-sm font-medium">Recommended to Follow</h4>
                     
                     {[
-                      { name: "Alex Cooper", username: "@alexcooper", image: "https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&q=80&w=100&h=100" },
-                      { name: "Sam Wilson", username: "@samwilson", image: "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?auto=format&fit=crop&q=80&w=100&h=100" },
-                      { name: "Taylor Swift", username: "@taylorswift", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100&h=100" }
+                      { name: "Alex Cooper", username: "@alexcooper" },
+                      { name: "Sam Wilson", username: "@samwilson" },
+                      { name: "Taylor Swift", username: "@taylorswift" }
                     ].map((user, index) => (
                       <div key={index} className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <Avatar className="h-8 w-8">
-                            <img src={user.image} alt={user.name} />
+                            <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
+                              <Robot size={14} className="text-primary/70" />
+                            </div>
                           </Avatar>
                           <div>
                             <p className="text-sm font-medium">{user.name}</p>
