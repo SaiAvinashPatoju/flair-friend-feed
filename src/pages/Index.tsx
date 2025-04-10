@@ -17,13 +17,25 @@ const Index = () => {
       
       {/* Social media icons */}
       <div className="flex-1 relative">
-        {/* Main image */}
+        {/* Main image/logo */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <img 
-            src="/lovable-uploads/cb6a969c-938f-47f5-98ba-c63c7363435c.png" 
-            alt="Social media phone" 
-            className="w-full h-full object-cover"
-          />
+          <div className="relative w-64 h-64 flex items-center justify-center">
+            {/* Purple circular gradient background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary/40 to-transparent rounded-full opacity-70 animate-pulse"></div>
+            
+            {/* Threadz logo text */}
+            <div className="relative z-10 flex flex-col items-center">
+              <div className="text-6xl font-extrabold text-foreground tracking-tighter mb-2">
+                Threadz
+              </div>
+              <div className="text-sm text-muted-foreground">Connect your world</div>
+              
+              {/* Decorative elements */}
+              <div className="absolute -z-10 w-40 h-40 bg-primary/20 rounded-full blur-xl"></div>
+              <div className="absolute -z-10 w-32 h-32 bg-purple-700/30 rounded-full blur-xl -translate-x-10 translate-y-5"></div>
+              <div className="absolute -z-10 w-24 h-24 bg-purple-500/20 rounded-full blur-xl translate-x-12 -translate-y-8"></div>
+            </div>
+          </div>
         </div>
       </div>
       
