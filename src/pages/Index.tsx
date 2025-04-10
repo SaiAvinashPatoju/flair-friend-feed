@@ -7,10 +7,10 @@ const Index = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#87CEEB] relative overflow-hidden">
+    <div className="min-h-screen flex flex-col bg-background relative overflow-hidden">
       {/* Back button */}
       <div className="absolute top-6 left-6">
-        <button className="p-2 rounded-full bg-white/20 backdrop-blur-sm">
+        <button className="p-2 rounded-full bg-accent/50 backdrop-blur-sm">
           <ArrowLeft className="text-foreground" size={24} />
         </button>
       </div>
@@ -28,12 +28,12 @@ const Index = () => {
       </div>
       
       {/* Bottom section */}
-      <div className="bg-white py-6 px-4 rounded-t-3xl">
-        <h1 className="text-3xl font-bold text-center mb-6 text-gray-900">Threadz</h1>
+      <div className="bg-card py-6 px-4 rounded-t-3xl">
+        <h1 className="text-3xl font-bold text-center mb-6 text-foreground">Threadz</h1>
         
         <div className="space-y-4 max-w-xs mx-auto">
           <Button 
-            className="w-full rounded-full bg-[#c683ce] hover:bg-[#b06fb7] text-white py-6"
+            className="w-full rounded-full bg-primary hover:bg-primary/80 text-primary-foreground py-6"
             onClick={() => navigate('/login')}
           >
             login
@@ -41,7 +41,7 @@ const Index = () => {
           
           <Button 
             variant="secondary"
-            className="w-full rounded-full bg-[#e29bd8] hover:bg-[#d687c8] text-white py-6"
+            className="w-full rounded-full bg-secondary hover:bg-secondary/80 text-secondary-foreground py-6"
             onClick={() => navigate('/register')}
           >
             SIGN UP/REGISTER
