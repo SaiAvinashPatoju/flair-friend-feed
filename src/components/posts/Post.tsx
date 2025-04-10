@@ -1,5 +1,5 @@
 
-import { Heart, MessageCircle, Users } from "lucide-react";
+import { Heart, MessageCircle, SendHorizontal } from "lucide-react";
 import { useState } from "react";
 import { Avatar } from "@/components/ui/avatar";
 
@@ -19,7 +19,6 @@ const Post = ({
   userAvatar,
   timeAgo,
   content,
-  image,
   likesCount: initialLikes,
   commentsCount,
 }: PostProps) => {
@@ -36,44 +35,39 @@ const Post = ({
   };
 
   return (
-    <div className="post-card from-secondary/20 to-card bg-gradient-to-b">
-      <div className="p-4">
-        <div className="flex justify-between items-center mb-3">
-          <div className="flex items-center space-x-2">
-            <Avatar className="h-10 w-10 border border-border/50">
+    <div className="bg-secondary/30 rounded-xl p-4 mb-3">
+      <div className="flex justify-between mb-2">
+        <div className="flex items-center space-x-2">
+          <Avatar className="h-8 w-8 bg-card">
+            {userAvatar ? (
               <img src={userAvatar} alt={username} className="h-full w-full object-cover" />
-            </Avatar>
-            <div>
-              <h3 className="font-medium text-foreground">{username}</h3>
-              <p className="text-xs text-muted-foreground">{timeAgo}</p>
-            </div>
+            ) : (
+              <div className="w-full h-full rounded-full bg-muted"></div>
+            )}
+          </Avatar>
+          <div className="text-sm">
+            <span className="font-medium">{username}</span>
+            <span className="text-muted-foreground ml-1 text-xs">{timeAgo}</span>
           </div>
-          <button onClick={handleLike} className={`p-2 rounded-full ${isLiked ? 'text-red-500' : 'text-muted-foreground'}`}>
-            <Heart size={20} fill={isLiked ? "currentColor" : "none"} />
-          </button>
         </div>
-        
-        <p className="mb-3 text-foreground">{content}</p>
-        
-        {image && (
-          <div className="mb-3 -mx-4">
-            <img 
-              src={image} 
-              alt="Post" 
-              className="w-full max-h-96 object-cover"
-            />
-          </div>
-        )}
-        
-        <div className="flex space-x-4 pt-2">
-          <button className="flex items-center space-x-1 text-muted-foreground hover:text-primary transition-colors">
-            <Users size={20} />
-            <span className="text-sm">Follow</span>
+        <button 
+          onClick={handleLike}
+          className="p-1"
+        >
+          <Heart 
+            size={18} 
+            className={isLiked ? "text-red-500 fill-red-500" : "text-muted-foreground"} 
+          />
+        </button>
+      </div>
+      <p className="text-sm mb-3">{content}</p>
+      <div className="flex justify-between items-center">
+        <div className="flex space-x-2">
+          <button className="p-1 text-muted-foreground">
+            <MessageCircle size={18} />
           </button>
-          
-          <button className="flex items-center space-x-1 text-muted-foreground hover:text-primary transition-colors">
-            <MessageCircle size={20} />
-            <span className="text-sm">Comment ({commentsCount})</span>
+          <button className="p-1 text-muted-foreground">
+            <SendHorizontal size={18} />
           </button>
         </div>
       </div>

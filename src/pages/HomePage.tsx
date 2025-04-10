@@ -1,129 +1,143 @@
 
-import { Heart, MessageCircle, Users } from "lucide-react";
+import { Heart, MessageCircle, SendHorizontal } from "lucide-react";
 import { useState } from "react";
 import { Avatar } from "@/components/ui/avatar";
-import PostsList from "@/components/posts/PostsList";
-import { 
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext
-} from "@/components/ui/carousel";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
-const TweetBox = () => {
-  const [tweet, setTweet] = useState('');
-  
+// Simplified Tweet component
+const Tweet = ({ 
+  username, 
+  timeAgo, 
+  content, 
+  isFollowing = false 
+}: { 
+  username: string; 
+  timeAgo: string; 
+  content: string;
+  isFollowing?: boolean;
+}) => {
+  const [isLiked, setIsLiked] = useState(false);
+
   return (
-    <div className="tweet-box mb-6">
-      <Carousel className="w-full" opts={{ startIndex: 1 }}>
-        <CarouselContent>
-          <CarouselItem>
-            <div className="p-2">
-              <h3 className="text-lg font-medium mb-2 text-left">What's happening?</h3>
-              <div className="flex items-start space-x-3">
-                <Avatar className="h-12 w-12 bg-accent">
-                  <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&q=80&w=100&h=100" alt="Your profile" />
-                </Avatar>
-                <div className="flex-1">
-                  <Textarea
-                    className="w-full bg-transparent border-none focus:outline-none resize-none text-foreground placeholder:text-muted-foreground min-h-[100px]"
-                    placeholder="Share your thoughts..."
-                    value={tweet}
-                    onChange={(e) => setTweet(e.target.value)}
-                  />
-                  <div className="flex justify-end mt-2">
-                    <Button className="bg-primary hover:bg-primary/80 text-white">
-                      Tweet
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </CarouselItem>
-          <CarouselItem>
-            <div className="p-2">
-              <h3 className="text-lg font-medium mb-2 text-left">Tweets from people you follow</h3>
-              <div className="space-y-4 p-2">
-                <div className="flex gap-3 items-center p-2 rounded-lg bg-secondary/30">
-                  <Avatar className="h-10 w-10">
-                    <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&q=80&w=100&h=100" alt="Friend" />
-                  </Avatar>
-                  <div className="text-left flex-1">
-                    <p className="text-sm font-semibold">@alex_coder</p>
-                    <p className="text-foreground">Just launched my new site! Check it out and let me know what you think.</p>
-                  </div>
-                  <Heart size={18} className="text-muted-foreground hover:text-red-500 cursor-pointer" />
-                </div>
-                <div className="flex gap-3 items-center p-2 rounded-lg bg-secondary/30">
-                  <Avatar className="h-10 w-10">
-                    <img src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&q=80&w=100&h=100" alt="Friend" />
-                  </Avatar>
-                  <div className="text-left flex-1">
-                    <p className="text-sm font-semibold">@jenny_designs</p>
-                    <p className="text-foreground">Working on some new UI concepts for a client. Excited to share soon!</p>
-                  </div>
-                  <Heart size={18} className="text-muted-foreground hover:text-red-500 cursor-pointer" />
-                </div>
-              </div>
-            </div>
-          </CarouselItem>
-        </CarouselContent>
-        <div className="flex justify-center mt-2">
-          <div className="flex space-x-1">
-            <div className="w-2 h-2 rounded-full bg-muted"></div>
-            <div className="w-2 h-2 rounded-full bg-primary"></div>
+    <div className={`rounded-xl p-4 mb-3 ${isFollowing ? 'bg-secondary/30' : 'bg-muted/40'}`}>
+      <div className="flex justify-between mb-2">
+        <div className="flex items-center space-x-2">
+          <Avatar className="h-8 w-8 bg-card">
+            <div className="w-full h-full rounded-full bg-muted"></div>
+          </Avatar>
+          <div className="text-sm">
+            <span className="font-medium">{username}</span>
+            <span className="text-muted-foreground ml-1 text-xs">{timeAgo}</span>
           </div>
         </div>
-        <CarouselPrevious className="hidden sm:flex" />
-        <CarouselNext className="hidden sm:flex" />
-      </Carousel>
+        <button 
+          onClick={() => setIsLiked(!isLiked)}
+          className="p-1"
+        >
+          <Heart 
+            size={18} 
+            className={isLiked ? "text-red-500 fill-red-500" : "text-muted-foreground"} 
+          />
+        </button>
+      </div>
+      <p className="text-sm mb-3">{content}</p>
+      <div className="flex justify-between items-center">
+        <div className="flex space-x-2">
+          <button className="p-1 text-muted-foreground">
+            <MessageCircle size={18} />
+          </button>
+          <button className="p-1 text-muted-foreground">
+            <SendHorizontal size={18} />
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
 
+// Tweet composer component
+const TweetComposer = () => {
+  const [text, setText] = useState('');
+  
+  return (
+    <div className="bg-primary/20 rounded-xl p-4 mb-4">
+      <div className="flex space-x-3">
+        <Avatar className="h-8 w-8 bg-card flex-shrink-0">
+          <div className="w-full h-full rounded-full bg-muted"></div>
+        </Avatar>
+        <div className="flex-grow">
+          <Textarea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="What's happening?"
+            className="bg-transparent border-none resize-none text-sm min-h-[60px] p-0 focus-visible:ring-0"
+          />
+          <div className="flex justify-end mt-2">
+            <Button size="sm" className="rounded-full px-4 py-1 h-8 text-xs bg-primary text-primary-foreground">
+              post
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Dot indicator component
+const DotIndicator = ({ active = false }: { active?: boolean }) => (
+  <div className={`w-2 h-2 rounded-full ${active ? 'bg-primary' : 'bg-muted'}`}></div>
+);
+
 const HomePage = () => {
-  const [activeTab, setActiveTab] = useState('foryou');
+  const [activeTab, setActiveTab] = useState<'foryou' | 'following'>('foryou');
   
   return (
     <div className="mb-16">
-      <TweetBox />
+      {/* Tweet composer */}
+      <TweetComposer />
       
-      <div className="flex justify-center mb-6">
-        <div className="bg-secondary/50 rounded-full p-1 flex">
+      {/* Dots indicator */}
+      <div className="flex justify-center space-x-1 mb-4">
+        <DotIndicator active={true} />
+        <DotIndicator />
+        <DotIndicator />
+      </div>
+      
+      {/* Tab selector */}
+      <div className="mb-4">
+        <div className={`${activeTab === 'following' ? 'bg-primary' : 'bg-secondary/40'} text-center py-2 rounded-full mb-4`}>
           <button 
-            onClick={() => setActiveTab('foryou')} 
-            className={`category-tab ${activeTab === 'foryou' ? 'bg-primary text-white' : 'text-muted-foreground'}`}
+            onClick={() => setActiveTab('following')}
+            className={`text-sm font-medium ${activeTab === 'following' ? 'text-primary-foreground' : 'text-muted-foreground'}`}
           >
-            For You
-          </button>
-          <button 
-            onClick={() => setActiveTab('following')} 
-            className={`category-tab ${activeTab === 'following' ? 'bg-primary text-white' : 'text-muted-foreground'}`}
-          >
-            Following
-          </button>
-          <button 
-            onClick={() => setActiveTab('trending')} 
-            className={`category-tab ${activeTab === 'trending' ? 'bg-primary text-white' : 'text-muted-foreground'}`}
-          >
-            Trending
+            following
           </button>
         </div>
       </div>
       
-      <div className="space-y-6">
-        {activeTab === 'foryou' && <PostsList />}
-        
-        {activeTab === 'following' && (
+      {/* Tweets list */}
+      <div className="space-y-1">
+        {activeTab === 'following' ? (
+          <>
+            <Tweet 
+              username="other user name" 
+              timeAgo="7 hours ago" 
+              content="text content" 
+              isFollowing={true} 
+            />
+            <Tweet 
+              username="other user name" 
+              timeAgo="7 hours ago" 
+              content="text content" 
+              isFollowing={true} 
+            />
+          </>
+        ) : (
           <div className="flex items-center justify-center h-40">
-            <p className="text-muted-foreground">Follow users to see their posts here!</p>
+            <p className="text-muted-foreground text-sm">Follow users to see their posts here!</p>
           </div>
         )}
-        
-        {activeTab === 'trending' && <PostsList trending={true} />}
       </div>
     </div>
   );
